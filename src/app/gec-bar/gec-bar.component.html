@@ -1,0 +1,92 @@
+<style>
+.gec-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  height: 120px;
+  margin-top: -600px;
+}
+.gec-input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.gec-bar input[type="text"] {
+	margin-top: -50px;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  width: 700px;
+  font-size: 20px;
+  border: 1px solid green;
+}
+
+.gec-logo img{
+  margin-top: 200px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 700px; 
+  height: 200px;
+}
+
+.gec-bar button[type="submit"] {
+  color: white;
+  border: none;
+  border-radius: 50px;
+  margin-top: 20px;
+  padding: 15px 120px;
+  font-size: 20px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.gec-bar button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+.gec-response-message {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.gec-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bkg-header img{
+  porition: absolute
+}
+
+</style>
+
+
+<div class="bkg-header">
+	<img src="assets/background.png" alt="bkg" width=1420 height=768>
+</div>
+<div class="gec-bar">
+	
+	<div class="gec-header">
+  <div class="gec-logo" #logo>
+  <img src="assets/Logo.gif" alt="Logo" loop="false" [ngClass]="{ 'finished': isLogoFinished }">
+  </div>
+  <form (submit)="sendQuery($event)">
+    <div class="gec-input-container">
+      <input type="text" placeholder="Type your sentence..." class="gec-input" name="query" [(ngModel)]="searchQuery">
+      <button type="submit" class="gec-button">CORRECT</button>
+    </div>
+    <div *ngIf="responseMessage" class="gec-response-message">{{ responseMessage }}</div>
+  </form>
+  </div>
+</div>
+
+

@@ -1,0 +1,105 @@
+image: node:latest
+
+
+pages:
+  cache:
+    paths:
+      - node_modules/
+
+  stages:
+    - build
+    - deploy
+
+  build:
+    stage: build
+    script:
+      - npm install
+      - npm run build
+      - num start
+    artifacts:
+      paths:
+        - public/
+
+  deploy:
+    stage: deploy
+    script:
+      - npm install -g @angular/cli@6.2.1
+      - ng build
+      - npm install rxjs ngx-spinner
+    only:
+      - main
+
+
+##########
+image: node:latest
+
+pages:
+  cache:
+    paths:
+    - node_modules/
+
+  stage: deploy
+  script:
+  - npm install -g @angular/cli@6.2.1
+  - npm install
+  - ng build
+  - mkdir -p public
+  - mv dist/app/* public/
+  artifacts:
+    paths:
+    - public
+  only:
+  - main
+  - pages
+
+
+
+
+image: node:latest
+
+pages:
+  cache:
+    paths:
+    - node_modules/
+
+  stage: deploy
+  script:
+  - npm install
+  - npm run build
+  - npm install -g @angular/cli@6.2.1
+  - npm install
+  - npm install rxjs ngx-spinner
+  - ng build
+  - mkdir -p public
+  - mv dist/app/* public/
+  artifacts:
+    paths:
+    - public
+  only:
+  - main
+  - pages
+
+
+image: node:latest
+
+pages:
+  cache:
+    paths:
+    - node_modules/
+
+  stage: deploy
+  script:
+  - npm install
+  - npm run build
+  - npm install -g @angular/cli@6.2.1
+  - npm install
+  - npm install rxjs ngx-spinner
+  - ng build
+  - mkdir -p public
+  - mv dist/ital-gec/* public/
+  artifacts:
+    paths:
+    - public
+  only:
+  - main
+  - pages
